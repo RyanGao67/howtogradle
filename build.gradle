@@ -1,0 +1,40 @@
+
+// approach 1 using shadow
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'java'
+    id 'application'
+}
+group 'com.shallowlightning'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.apache.commons:commons-lang3:3.9'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+mainClassName = 'com.shallowlightning.app'
+
+// approach 2 using configuration.compile
+//jar {
+//    manifest {
+//        attributes "Main-Class":"$mainClassName"
+//    }
+//    from { configurations.compile.collect {it.isDirectory()? it: zipTree(it)} }
+//}
+
+jar {
+    manifest {
+        attributes "Main-Class":"$mainClassName"
+    }
+}
+
